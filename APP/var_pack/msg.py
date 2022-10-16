@@ -22,3 +22,5 @@ got_url = "And make a request to the following URL: "
 working = "Processing..."
 bad_selection = "Wrong option. Please try again..."
 got_html = "Ok... Here it comes..."
+
+# Status

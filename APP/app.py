@@ -2,6 +2,7 @@
 """ Contains the main app interface to guide the user
     on the use of the WebScrapping Tool
 """
+import json
 import requests
 from time import sleep
 from var_pack import msg
@@ -139,7 +140,12 @@ def url_builder():
         print("Thanks, going back...")
         step1()
 
-# def make_request():
+
+def save_to_json_file(my_obj, filename):
+    """ Will write an Object to a text file using JSON format """
+    with open(filename, 'w') as f:
+        f.write(json.dumps(my_obj))
+
 step0();
 step1();
 step2();
