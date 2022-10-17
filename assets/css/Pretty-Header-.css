@@ -1,17 +1,17 @@
 .custom-header {
-  background: #292c2f;
   padding: 20px 40px;
   box-sizing: border-box;
   border: 0;
   border-radius: 0;
+  font-family: "Quicksand", sans-serif;
 }
 
 .custom-header a.navbar-brand {
   color: #fff;
-  font: normal 28px Cookie, Arial, Helvetica, sans-serif;
+  font: normal 28px Quicksand, Arial, Helvetica, sans-serif;
   line-height: 0.5;
   margin-right: 40px;
-  background: #292c2f;
+
 }
 
 .custom-header a.navbar-brand span {
@@ -23,8 +23,13 @@
   opacity: 0.9;
   text-decoration: none;
   color: #fff;
-  background: #292c2f;
   border: 0;
+}
+.navbar-expand-md .navbar-nav .nav-link {
+  padding-right: var(--bs-navbar-nav-link-padding-x);
+  padding-left: var(--bs-navbar-nav-link-padding-x);
+  margin-left: 100px;
+  text-shadow: black 0.1em 0.1em 0.2em;
 }
 
 .custom-header ul.nav.navbar-nav li a:hover {
@@ -42,27 +47,22 @@
   font-weight: normal;
 }
 
-.custom-header li.dropdown, .custom-header li.dropdown.open {
-  background: #3a3c3e;
-}
-
 .custom-header li.dropdown .dropdown-toggle {
   border-radius: 2px;
   color: #fff;
   padding: 8px 14px;
-  background: #3a3c3e;
   opacity: 0.9;
   border: 0;
   margin: 0;
+  
 }
 
 .custom-header li.dropdown .dropdown-toggle:focus, .custom-header li.dropdown .dropdown-toggle:hover, .custom-header li.dropdown .dropdown-toggle:active {
-  background: #3a3c3e;
   color: #fff;
 }
 
 .custom-header ul.nav.navbar-nav.navbar-right .dropdown li a {
-  font: bold 13px Arial, Helvetica, sans-serif;
+  font: bold 13px Arial, sans-serif, quicksand;
 }
 
 img.dropdown-image {
@@ -88,10 +88,7 @@ img.dropdown-image {
   border-radius: 2px;
   color: #fff;
   padding: 0;
-}
-
-.custom-header .dropdown ul li a:active, .custom-header .dropdown ul li a:focus, .custom-header .dropdown ul li a:hover {
-  background: #3a3c3e;
+  text-align: center;
 }
 
 .custom-header .dropdown ul li.active a {
@@ -107,3 +104,4 @@ img.dropdown-image {
   text-decoration: none;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 }
+
