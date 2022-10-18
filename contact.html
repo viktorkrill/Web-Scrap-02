@@ -12,13 +12,13 @@
       href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700&display=swap"
       rel="stylesheet"
     />
-
     <link
       rel="stylesheet"
       href="assets/css/Customizable-Background--Overlay.css"
     />
     <link rel="stylesheet" href="assets/css/Pretty-Header-.css" />
-    <link rel="stylesheet" href="assets/css/styleindex.css" />
+    <link rel="stylesheet" href="assets/css/styleresultado.css" />
+    <link rel="stylesheet" href="assets/css/form.css" />
   </head>
 
   <body>
@@ -36,12 +36,13 @@
           </button>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
-          <ul class="navbar-nav links" style="font-family: 'Quicksand', sans-serif;">
+          <ul class="navbar-nav links">
             <li class="nav-item"><a class="nav-link" href="#">Paises </a></li>
             <li class="nav-item"><a class="nav-link" href="#">Vacantes </a></li>
             <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
             <li class="nav-item">
-              <a class="nav-link custom-navbar" href="#"> Blog</a>
+              <a class="nav-link custom-navbar" href="#">
+                Blog</a>
             </li>
           </ul>
           <ul class="navbar-nav ms-auto">
@@ -64,46 +65,38 @@
         </div>
       </div>
     </nav>
-    <div class="container2">
-      <h1
-        class="text-center"
-        style="
-          color: rgb(242, 245, 248);
-          font-size: 56px;
-          font-weight: bold;
-          font-family: Roboto, sans-serif, quicksand;
-        "
-      >
-        ¿BUSCANDO CHAMBA?
-      </h1>
-      <form
-        class="search-form"
-        style="margin-left: 113px; padding-left: 0px; margin-right: 107px"
-      >
-        <div class="input-group">
-          <span class="input-group-text"><i class="fa fa-search"></i></span
-          ><input
-            class="form-control"
-            type="text"
-            placeholder="Pais o lenguaje favorito"
-          /><button class="btn btn-light" type="button">Buscar</button>
-        </div>
+    <div class="bg-contact2" style="font-family: 'Quicksand', sans-serif;">
+      <div class="container-contact2">
+      <div class="wrap-contact2">
+      <form class="contact2-form validate-form">
+      <span class="contact2-form-title" style="font-family: 'Quicksand', sans-serif;">
+      Contacto
+      </span>
+      <div class="wrap-input2 validate-input" data-validate="Name is required">
+      <input class="input2" type="text" name="name">
+      <span class="focus-input2" data-placeholder="NOMBRE"></span>
+      </div>
+      <div class="wrap-input2 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+      <input class="input2" type="text" name="email">
+      <span class="focus-input2" data-placeholder="EMAIL"></span>
+      </div>
+      <div class="wrap-input2 validate-input" data-validate="Message is required">
+      <textarea class="input2" name="message"></textarea>
+      <span class="focus-input2" data-placeholder="MENSAJE"></span>
+      </div>
+      <div class="container-contact2-form-btn">
+      <div class="wrap-contact2-form-btn">
+      <div class="contact2-form-bgbtn"></div>
+      <button class="contact2-form-btn" style="font-family: 'Quicksand', sans-serif;">
+      Enviar
+      </button>
+      </div>
+      </div>
       </form>
-      <h3
-        class="text-center"
-        style="
-          color: rgb(242, 245, 248);
-          padding-top: 0.25em;
-          padding-bottom: 0.25em;
-          font-weight: normal;
-        "
-      >
-        <strong>Sin experiencia y desde tu casa, trabaja ya!</strong>
-      </h3>
-    </div>
-
+      </div>
+      </div>
+      </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-
     <div class="footer-basic">
       <footer
         class="text-center text-white fixed-bottom"
@@ -114,9 +107,6 @@
         <!-- Grid container -->
 
         <!-- Copyright -->
-        <div
-          class="text-center p-3"
-        >
           © 2022 Copyright:
           <a class="text-white" href="#">DatAlchemyst</a>
         </div>
