@@ -6,12 +6,13 @@ from sqlalchemy import Column, String, Integer
 from models.base_model import BaseModel, Base
 from hashlib import md5
 
-class Offer(db.Model):
+class Offer(db.BaseModel):
     """This class is inherited from BaseModel used to create Offers"""
     __tablename__ = 'offers'
     tittle = Column(String(128), nullable=False)
     company = Column(String(128), nullable=False)
     location = Column(String(64), nullable=False)
+    description = Column(String(256), nullable=False)
     salary = Column(Integer(32), nullable=False)
     currency = Column(String(16), nullable=False)
 

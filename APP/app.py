@@ -2,14 +2,16 @@
 """ Contains the main app interface to guide the user
     on the use of the WebScrapping Tool
 """
-import json
+
+
 import requests
 from time import sleep
 from var_pack import msg
 from datetime import datetime
+from bs4 import BeautifulSoup
 
 # Wait time controller
-sleep_time = 1
+sleep_time = 2
 
 # Classes to process
 classes = ['Offer']
@@ -27,6 +29,7 @@ cur_country = ""
 job_search = ""
 num_offers = ""
 my_url = ""
+html_r = ""
 
 def time_bar():
     now = datetime.now()
@@ -98,7 +101,7 @@ def step3():
     if answer != 'null':
         job_search = answer
         print(msg.typed + job_search)
-        my_url = cur_pag + "trabajo-de-" + job_search
+        my_url = cur_pag + "trabajo-de-" + job_search + '/?p=1'
     else:
         pass
 
@@ -118,8 +121,8 @@ def step4():
         pass
 
 def url_builder():
-    """ Function used to build a UR """
-    global cur_pag, job_search, num_offers, my_url, headers;
+    """ Function used to build a URL """
+    global cur_pag, job_search, num_offers, my_url, headers, html_r;
     time_bar()
     print(msg.search_for + str(num_offers) + " offers")
     print(msg.got_url + my_url)
@@ -127,24 +130,103 @@ def url_builder():
     print("\n" + msg.quest5)
     answer = input("\n" + "R// ")
 
+    if answer is int:
+        return TypeError
+
     if answer == 'y' or 'yes':
-        print(msg.bar + msg.working)
+        time_bar();
+        print(msg.working)
         sleep(sleep_time)
 
-        r = requests.get(my_url, headers=headers)
-        print("\n" + msg.got_html + "\n" + msg.bar)
+        html_r = requests.get(my_url, headers=headers)
+        print("\n" + msg.got_html + "\n" + msg.bar + "\n")
         sleep(sleep_time)
-        print(r.content)
+        html_process()
 
     else:
         print("Thanks, going back...")
         step1()
 
+def html_process():
+    """ """
+    global html_r;
+    now = datetime.now()
+    ct = now.strftime("%H:%M:%S")
+    buffer = {'get_date': ct,}
 
-def save_to_json_file(my_obj, filename):
-    """ Will write an Object to a text file using JSON format """
-    with open(filename, 'w') as f:
-        f.write(json.dumps(my_obj))
+    soup = BeautifulSoup(html_r.text, 'html.parser')
+
+    # Get Offer tittle
+    try:
+        offer_tittle = soup.find('h1', {'class': 'fwB fs24 mb5 box_detail w100_m'}).text
+        buffer['Offer_tittle'] = offer_tittle
+        print(buffer)
+    except:
+        buffer['Offer_tittle'] = 'N/A'
+        print(buffer)
+        print(msg.didnot_get)
+
+    # Get Company Name
+    try:
+        comp_name = soup.find('a', {'class': 'dIB fs16 js-o-link'}).text
+        buffer['Company'] = comp_name
+        print(buffer)
+    except:
+        buffer['Company'] = 'N/A'
+        print(buffer)
+        print(msg.didnot_get)
+
+    # Get Offer Location
+    try:
+        location = soup.find('p', {'class': 'fs16'}).text
+        buffer['Location'] = location
+        print(buffer)
+    except:
+        buffer['Location'] = 'N/A'
+        print(buffer)
+        print(msg.didnot_get)
+
+    # Get Offer description
+    try:
+        description = soup.find('p', {'class': 'mbB'}).text
+        buffer['Description'] = description
+        print(buffer)
+    except:
+        buffer['Description'] = 'N/A'
+        print(buffer)
+        print(msg.didnot_get)
+
+    # Get Offer Salary
+    try:
+        salary = soup.find('p', {'class': 'fwB fs21'}).text
+        buffer['Salary'] = salary
+    except:
+        buffer['Salary'] = 'N/A'
+        print(msg.didnot_get)
+
+
+def get_url_list():
+    """ """
+    urls_ofertas = soup.find_all('a', 'js-o-link')
+
+    # List of urls
+    url_list = [my_url + urls.get('href') for urls in urls_ofertas]
+
+    return(url_list)
+
+    for page in range(1, num_offers+1):
+        offers = get_urls_empleos(page)
+        thread_list = list()
+
+        for x in offers:
+            t = threading.Thread(name='PROCESSING {}'.format(
+                x), target=data_retrieval, args=(x,))
+            thread_list.append(t)
+            t.start()
+            print(t.name + ' started!')
+        for thread in thread_list:
+            thread.join()
+        print(f'PAGE {page} --- Data retrieval completed!')
 
 step0();
 step1();
@@ -152,3 +234,5 @@ step2();
 step3();
 step4();
 url_builder();
+html_process();
+

@@ -18,11 +18,10 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        HITCH_MYSQL_USER = getenv('HITCH_MYSQL_USER')
-        HITCH_MYSQL_PWD = getenv('HITCH_MYSQL_PWD')
-        HITCH_MYSQL_HOST = getenv('HITCH_MYSQL_HOST')
+        HITCH_MYSQL_USER = getenv('user1')
+        HITCH_MYSQL_PWD = getenv('GG8nDrzqWkP!aapgDsYrfw.p')
+        HITCH_MYSQL_HOST = getenv('holberton.cm8wxkustwc4.us-east-1.rds.amazonaws.com')
         HITCH_MYSQL_DB = getenv('HITCH_MYSQL_DB')
-        HITCH_ENV = getenv('HITCH_ENV')
         self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
                                       format(HITCH_MYSQL_USER,
                                              HITCH_MYSQL_PWD,

@@ -24,3 +24,4 @@ bad_selection = "Wrong option. Please try again..."
 got_html = "Ok... Here it comes..."
 
 # Status
+didnot_get = "Could not get the content"
