@@ -103,26 +103,7 @@ def data_retrieval(url):
     # Create files json
     id_job_by_url = re.search("[A-Z0-9]*$", url)[0]
 
-    filename = "retrieve_data.json" #"Colombia/vacantes/{id_job_by_url}-{fecha_busqueda}.json"
-
-
-    """ # Create folder
-    if not os.path.exists('Colombia/vacantes'):
-        os.makedirs('Colombia/vacantes')
- """
-    # Create file
-    """ with open(filename, 'r+') as json_file:
-        try:
-            load_data = json.load(json_file)
-            print("==========================\n", load_data)
-            load_data.append(registro)
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n", load_data)
-            json.dump(load_data, json_file)
-        except Exception as e:
-            print(e)
-            print([registro])
-            json.dump([registro], json_file)
-            sleep(1) """
+    filename = "retrieve_data.json" 
 
     return registro
 
@@ -140,12 +121,4 @@ for page in range(1, num_offers+1):
 
 with open("retrieve_data.json", "w+") as jsonfile:
     json.dump(data_list, jsonfile, ensure_ascii=False)
-
-    """ t = threading.Thread(name='PROCESSING {}'.format(
-            x), target=data_retrieval, args=(x,))
-        thread_list.append(t)
-        t.start()
-        print(t.name + ' started!')
-    for thread in thread_list:
-        thread.join() """
     print(f'PAGE {page} --- Data retrieval completed!')
