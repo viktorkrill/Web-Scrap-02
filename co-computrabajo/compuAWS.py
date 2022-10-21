@@ -103,17 +103,26 @@ def data_retrieval(url):
     # Create files json
     id_job_by_url = re.search("[A-Z0-9]*$", url)[0]
 
-    filename = f"Colombia/vacantes/{id_job_by_url}-{fecha_busqueda}.json"
+    filename = "retrieve_data.json" #"Colombia/vacantes/{id_job_by_url}-{fecha_busqueda}.json"
 
 
-    # Create folder
+    """ # Create folder
     if not os.path.exists('Colombia/vacantes'):
         os.makedirs('Colombia/vacantes')
-
+ """
     # Create file
-    with open(filename, 'w') as json_file:
-        json.dump(registro, json_file, indent=4, ensure_ascii=False)
-        sleep(1)
+    """ with open(filename, 'r+') as json_file:
+        try:
+            load_data = json.load(json_file)
+            print("==========================\n", load_data)
+            load_data.append(registro)
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n", load_data)
+            json.dump(load_data, json_file)
+        except Exception as e:
+            print(e)
+            print([registro])
+            json.dump([registro], json_file)
+            sleep(1) """
 
     return registro
 
@@ -122,15 +131,21 @@ num_offers = 1
 print(f'Numero de ofertas: {num_offers}')
 
 # List of urls
+data_list = list()
 for page in range(1, num_offers+1):
     offers = get_urls_empleos(page)
-    thread_list = list()
     for x in offers:
-        t = threading.Thread(name='PROCESSING {}'.format(
+        data_list.append(data_retrieval(x))
+    print(data_list)
+
+with open("retrieve_data.json", "w+") as jsonfile:
+    json.dump(data_list, jsonfile, ensure_ascii=False)
+
+    """ t = threading.Thread(name='PROCESSING {}'.format(
             x), target=data_retrieval, args=(x,))
         thread_list.append(t)
         t.start()
         print(t.name + ' started!')
     for thread in thread_list:
-        thread.join()
+        thread.join() """
     print(f'PAGE {page} --- Data retrieval completed!')
