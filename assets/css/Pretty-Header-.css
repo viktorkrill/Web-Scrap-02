@@ -105,6 +105,12 @@ img.dropdown-image {
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 }
 
+.navbar-expand-md .navbar-collapse {
+  display: flex!important;
+  flex-basis: auto;
+  margin-left: 100px;
+}
+
 footer {
   margin-top: 50px;
   display: flex;
