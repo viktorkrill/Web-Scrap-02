@@ -7,7 +7,8 @@ from bs4 import BeautifulSoup
 import os
 import requests
 import re
-
+from db.models import storage
+from db.models.job_offer import JobOffer
 
 # Parse html
 def get_urls_empleos(num):
@@ -115,8 +116,13 @@ data_list = list()
 for page in range(1, num_offers+1):
     offers = get_urls_empleos(page)
     for x in offers:
-        data_list.append(data_retrieval(x))
-    print(data_list)
+        print(f'Retrieving data from {x}')
+        retrieved_dictionary = data_retrieval(x)
+        data_list.append(retrieved_dictionary)
+        actual_offer = JobOffer(**retrieved_dictionary)
+        storage.new(actual_offer)
+        storage.save()
+        print('Saved to database')
 
 with open("retrieve_data.json", "w+") as jsonfile:
     json.dump(data_list, jsonfile, ensure_ascii=False)
