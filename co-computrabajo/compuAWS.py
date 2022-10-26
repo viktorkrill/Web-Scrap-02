@@ -9,6 +9,7 @@ import re
 from db.models import storage
 from db.models.job_offer import JobOffer
 
+
 # Parse html
 def get_urls_empleos(num):
 
@@ -28,7 +29,8 @@ def get_urls_empleos(num):
 
     return(lista_url_empleos)
 
-#info date
+
+# info date
 def data_retrieval(url):
 
     fecha_busqueda = datetime.today().strftime('%Y-%m-%d-%H-%M')
@@ -102,9 +104,10 @@ def data_retrieval(url):
     # Create files json
     id_job_by_url = re.search("[A-Z0-9]*$", url)[0]
 
-    filename = "retrieve_data.json" 
+    filename = "retrieve_data.json"
 
     return registro
+
 
 # Pages to scrap
 num_offers = 1
