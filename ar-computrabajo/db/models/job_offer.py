@@ -6,9 +6,10 @@ from datetime import datetime
 
 from sqlalchemy import Column, String, DateTime
 
+
 class JobOffer(Base):
     """ The city class, contains state ID and name """
-    __tablename__ =  "offers"
+    __tablename__ = "offers"
 
     id = Column(String(60), nullable=False, primary_key=True)
     created_at = Column(DateTime, nullable=False, default=(datetime.utcnow()))
@@ -58,7 +59,6 @@ class JobOffer(Base):
         """Deletes object"""
         from models import storage
         storage.delete(self)
-
 
     url_empleo = Column(String(128))
     fecha_recuperacion = Column(String(60))
