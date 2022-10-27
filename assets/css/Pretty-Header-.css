@@ -7,11 +7,11 @@
 }
 
 .custom-header a.navbar-brand {
-  color: rgb(183, 164, 164);
+  color: white;
   font: normal 28px Quicksand, Arial, Helvetica, sans-serif;
-  line-height: 0.5;
+  text-shadow: 0 2px black;
+  line-height: 1.5;
   margin-right: 40px;
-
 }
 
 .custom-header a.navbar-brand span {
