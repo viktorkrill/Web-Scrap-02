@@ -147,86 +147,6 @@ def url_builder():
         print("Thanks, going back...")
         step1()
 
-def html_process():
-    """ """
-    global html_r;
-    now = datetime.now()
-    ct = now.strftime("%H:%M:%S")
-    buffer = {'get_date': ct,}
-
-    soup = BeautifulSoup(html_r.text, 'html.parser')
-
-    # Get Offer tittle
-    try:
-        offer_tittle = soup.find('h1', {'class': 'fwB fs24 mb5 box_detail w100_m'}).text
-        buffer['Offer_tittle'] = offer_tittle
-        print(buffer)
-    except:
-        buffer['Offer_tittle'] = 'N/A'
-        print(buffer)
-        print(msg.didnot_get)
-
-    # Get Company Name
-    try:
-        comp_name = soup.find('a', {'class': 'dIB fs16 js-o-link'}).text
-        buffer['Company'] = comp_name
-        print(buffer)
-    except:
-        buffer['Company'] = 'N/A'
-        print(buffer)
-        print(msg.didnot_get)
-
-    # Get Offer Location
-    try:
-        location = soup.find('p', {'class': 'fs16'}).text
-        buffer['Location'] = location
-        print(buffer)
-    except:
-        buffer['Location'] = 'N/A'
-        print(buffer)
-        print(msg.didnot_get)
-
-    # Get Offer description
-    try:
-        description = soup.find('p', {'class': 'mbB'}).text
-        buffer['Description'] = description
-        print(buffer)
-    except:
-        buffer['Description'] = 'N/A'
-        print(buffer)
-        print(msg.didnot_get)
-
-    # Get Offer Salary
-    try:
-        salary = soup.find('p', {'class': 'fwB fs21'}).text
-        buffer['Salary'] = salary
-    except:
-        buffer['Salary'] = 'N/A'
-        print(msg.didnot_get)
-
-
-def get_url_list():
-    """ """
-    urls_ofertas = soup.find_all('a', 'js-o-link')
-
-    # List of urls
-    url_list = [my_url + urls.get('href') for urls in urls_ofertas]
-
-    return(url_list)
-
-    for page in range(1, num_offers+1):
-        offers = get_urls_empleos(page)
-        thread_list = list()
-
-        for x in offers:
-            t = threading.Thread(name='PROCESSING {}'.format(
-                x), target=data_retrieval, args=(x,))
-            thread_list.append(t)
-            t.start()
-            print(t.name + ' started!')
-        for thread in thread_list:
-            thread.join()
-        print(f'PAGE {page} --- Data retrieval completed!')
 
 step0();
 step1();
@@ -234,5 +154,5 @@ step2();
 step3();
 step4();
 url_builder();
-html_process();
+
 
